@@ -29,4 +29,18 @@ function cheat() {
     cat ~/src/mac-environment/bash-cheatsheet.md
 }
 
+function create-github-repo() {
+    if [ "$#" -ne 1 ]; then
+        echo "please pass in a repo name"
+        return
+    fi
+
+    TOKEN="$(security 2>&1 >/dev/null find-generic-password -ga github-token | awk -F'"' '{ print $2 }')"
+    curl "https://api.github.com/user/repos?access_token=${TOKEN}" -d "{\"name\":\"${1}\"}" -v
+    git remote rm origin
+    git remote add origin "https://github.com/nickmeldrum/${1}.git"
+    git push -u origin --all
+    git push -u origin --tags
+}
+
 cheat
