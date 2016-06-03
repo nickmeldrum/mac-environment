@@ -3,6 +3,7 @@
  * `set -io vi` use vi keybindings for bash cmdline
  * `cheat` echo this cheatsheet
  * `execline x y` execute line x from file y
+ * `new-node-kata-project x` clone a node kata test project and set it up with name x
 
 # Git
 

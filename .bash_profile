@@ -43,4 +43,32 @@ function create-github-repo() {
     git push -u origin --tags
 }
 
+function new-node-kata-project() {
+    if [ "$#" -ne 1 ]; then
+        echo "please pass in a new project name"
+        return
+    fi
+
+    cd ~/src
+    git clone --depth=1 https://github.com/nickmeldrum/simple-node-kata-seed.git $1
+    cd "$1"
+
+    rm -rf .git
+    git init
+
+    npm install
+
+    npm i json
+    ./node_modules/json/lib/json.js -I -f package.json -e "this.name=\"${1}\""
+    ./node_modules/json/lib/json.js -I -f package.json -e "this.description=\"${1} kata exercise\""
+    rm -f README.md
+    echo -e " # ${1}\n\nkata coding exercise\n\n" > README.md
+    git add .
+    git commit -v -m "initial commit"
+
+    npm test
+    echo "app in file 'lib/index.js', tests in file 'test/test.js'"
+    echo "run the watcher with command 'npm run watch'"
+}
+
 cheat
