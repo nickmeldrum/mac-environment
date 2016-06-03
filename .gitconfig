@@ -1,0 +1,32 @@
+[user] 
+  name = Nick Meldrum
+  email = nick@nickmeldrum.com
+[alias]
+  st = status
+  cm = commit -v -m
+  ad = add -A
+  br = branch
+  unstage = reset HEAD --
+  last = log -1 HEAD
+  files = "!f() { git diff --name-status $1^!; }; f"
+[pull]
+    rebase = false
+[push]
+	default = simple
+[core]
+    editor = vim
+	longpaths = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[diff]
+    tool = vimdiff
+[diftool]
+    prompt = false
+[mergetool "fugitive"]
+	cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+[merge]
+	tool = fugitive
+[credential]
+	helper = osxkeychain
