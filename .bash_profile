@@ -1,8 +1,8 @@
 # Set CLICOLOR if you want Ansi Colors in iTerm2 
-export CLICOLOR=1
+#export CLICOLOR=1
 
 # Set colors to match iTerm2 Terminal Colors
-export TERM=xterm-256color
+#export TERM=xterm-256color
 
 alias g="git"
 
@@ -62,7 +62,7 @@ function new-node-kata-project() {
     ./node_modules/json/lib/json.js -I -f package.json -e "this.name=\"${1}\""
     ./node_modules/json/lib/json.js -I -f package.json -e "this.description=\"${1} kata exercise\""
     rm -f README.md
-    echo -e " # ${1}\n\nkata coding exercise\n\n" > README.md
+    echo -e "# ${1}\n\nkata coding exercise\n" > README.md
     git add .
     git commit -v -m "initial commit"
 
